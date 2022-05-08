@@ -1,42 +1,40 @@
-# Kolorování černobílých obrázků pomocí neuronové sítě
+ Coloring black and white images using neural network
 
-Tento projekt se zabývá tématem kolorování černobílých obrázků pomocí neuronové sítě založené na principu autoenkodéru. 
+This project deals with the topic of colouring black and white images using a neural network based on the principle of autoencoder. 
 
 ## Dataset
-Jako dataset jsem využil celkem 75 000 obrázků, které pocházeli z následujících kategorií:
-- Portréty (ženy, muži, děti, herci)
-- Krajiny (lesy, pláže, hory, květiny, vodopády, ostrovy)
-- Zvířata (zoo, savana)
-- Města (budovy, auta, ulice)
+I used a total of 75,000 images as the dataset, which came from the following categories:
+- Portraits (women, men, children, actors)
+- Landscapes (forests, beaches, mountains, flowers, waterfalls, islands)
+- Animals (zoo, savannah)
+- Cities (buildings, cars, streets)
 
-Jako augmentaci jsem zvolil vertikální zrcadlení obrázků, což dataset rozšířilo na velikost 150 000 obrázků.
+I chose vertical mirroring of the images as an augmentation, which expanded the dataset to a size of 150,000 images.
 
-![Augmentace zrcadlením](README_data/augmentation.png?raw=true "Augmentace zrcadlením")
+![Mirror Augmentation](README_data/augmentation.png?raw=true "Mirror Augmentation")
 
-Kvůli výpočetní náročnosti jsem zvolil obrázky o rozměrech 255 x 255 pixelů. 
+Due to computational complexity, I chose images of 255 x 255 pixels. 
 
-## Barevný model
-Jako barevný model jsem využil model Lab, který obsahuje v jednom kanálu jasovou složku a na neuronové síti je tak odhadnout pouze dva kanály (a,b), které tvoří barevnou složku obrázku.
+## Color model
+For the color model, I used the Lab model, which contains a luminance component in one channel, so the neural network can only estimate the two channels (a,b) that make up the color component of the image.
 
-## Model sítě
-Jako model neuronové sítě jsem zvolil síť, která obsahuje pouze konvoluční a dekonvoluční vrstvy. Výrazné zlepšení v oblasti detailů získala síť připojením výstupu z předtrénované sítě Resnet, která slouží jako klasifikátor obrázku.
+## Network model
+As a neural network model, I chose a network that contains only convolutional and deconvolutional layers. A significant improvement in detail was obtained by connecting the output of the pre-trained Resnet network, which serves as an image classifier.
 
-Celkově síť obsahuje 8 369 615 trénovatelných parametrů. Parametry sítě resnet jsou uzamčeny pro trénování.
+Overall, the network contains 8,369,615 trainable parameters. The resnet parameters are locked for training.
 
 ![Model](README_data/resnet%20%2B%20autoenkoder.png?raw=true "Network structure")
 
-## Výsledky
+## Results
 
-Výsledky závisejí z velké míry na vstupních datech. Velké rozpětí typů obrázků je hlavně u zvířat a portrétů. Pro správné fungování ve všech kategoriích je nutné dataset minimálně o 200 tisíc obrázků rozšířit.
+The results depend largely on the input data. There is a large range of image types, especially for animals and portraits. To work properly in all categories, the dataset needs to be expanded by at least 200,000 images.
 
-Porovnání obrázků (černobílý, kolorovaný, originál, kanál a):
+Image comparison (black and white, color, original, channel a):
 
 ![Model](README_data/finalni_correct_porovnani.jpg "Network structure")
 
-## Soubory
+## Files
 
-Přiložené soubory obsahují již natrénovaný model a trénovací script, který umožňuje trénování na více grafický kartách.
+The attached files contain an already trained model and a training script that allows training on multiple graphics cards.
 
-Trénování na 8 GPU při 150000 obrázích o rozměru 255x255 trvalo 12 hodin.
-
-
+Training on 8 GPUs with 150000 images of 255x255 took 12 hours.
