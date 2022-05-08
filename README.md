@@ -1,4 +1,4 @@
- Coloring black and white images using neural network
+## Coloring black and white images using neural network
 
 This project deals with the topic of colouring black and white images using a neural network based on the principle of autoencoder. 
 
@@ -36,5 +36,7 @@ Image comparison (black and white, color, original, channel a):
 ## Files
 
 The attached files contain an already trained model and a training script that allows training on multiple graphics cards.
+
+Link: https://drive.google.com/file/d/1ChvZAKmERbuiDZ-gD415ZH9lZrL-kmBJ/view?usp=sharing
 
 Training on 8 GPUs with 150000 images of 255x255 took 12 hours.
